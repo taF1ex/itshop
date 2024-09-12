@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Product;
+
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -11,10 +12,10 @@ class ProductController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-{
-$Product = Product::all();
-return view('product.index',compact('Product'));
-}
+    {
+    $product = Product::all();
+    return view('product.index',compact('product'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -55,12 +56,11 @@ return view('product.index',compact('Product'));
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy($id) {
-        Product::destroy($id);
+        ProductType::destroy($id);
         return back();
-        }
+    }
 }

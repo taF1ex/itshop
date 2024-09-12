@@ -13,11 +13,11 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -150,12 +150,37 @@
             </div>
           </div>
           <ul class="navbar-nav  justify-content-end">
-            <li class="nav-item d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
-                <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none">Sign In</span>
-              </a>
-            </li>
+          <li class="nav-item dropdown pe-2 d-flex align-items-center">
+<a href="javascript:;" class="nav-link text-white p-0"
+
+id="dropdownMenuButton" data-bs-toggle="dropdown"
+
+aria-expanded="false">
+<i class="fa fa-user cursor-pointer"></i>
+</a>
+
+<ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4" aria-
+labelledby="dropdownMenuButton">
+
+<li class="mb-2">
+<a class="dropdown-item border-radius-md" href="javascript:;">
+My Profile
+</a>
+</li>
+<li class="mb-2">
+<a class="dropdown-item border-radius-md" href="{{ route('logout')}}"
+
+onclick="event.preventDefault();
+
+document.getElementById('logout_form').submit();">
+Logout
+</a>
+<form method="POST" id="logout_form" action="{{ route('logout') }}">
+@csrf
+</form>
+</li>
+</ul>
+</li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
                 <div class="sidenav-toggler-inner">
@@ -211,6 +236,7 @@
                     </div>
                   </a>
                 </li>
+                
                 <li>
                   <a class="dropdown-item border-radius-md" href="javascript:;">
                     <div class="d-flex py-1">
@@ -244,13 +270,14 @@
               </ul>
             </li>
           </ul>
+          
         </div>
       </div>
     </nav>
     <!-- End Navbar -->
     <div class="container-fluid py-4">
-    @yield('content')
-</div>
+        @yield('content')
+    </div>
   </main>
   <div class="fixed-plugin">
     <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">

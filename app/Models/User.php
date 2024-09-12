@@ -31,7 +31,10 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-
+    public function isAdmin()
+    {
+        return $this->user_type === 2;
+    }
     /**
      * Get the attributes that should be cast.
      *
